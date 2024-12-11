@@ -1,41 +1,24 @@
 class Solution:
     def maximumBeauty(self, nums: List[int], k: int) -> int:
-        size = len(nums)
-        ranNums = []
-        for i in range(size):
-            ran = [nums[i] - k, nums[i] + k]
-            ranNums.append(ran)
-        # This question has been converted to finding out the maximum overlapping interval 
-        ranNums = sorted(ranNums, key=lambda x: x[0])
-        group = []
-        count = 1
-        print(ranNums)
-        ans = 1
-        i = 0
-        while i < size:
-            cs = ranNums[i][0]
-            ce = ranNums[i][1]
-            
-            if len(group) > 0:
-                fs = group[0][0]
-                fe = group[0][1]
-            
+        nums = sorted(nums)
+        ans = []
+        for i in range(len(nums)):
+            y = nums[i] + 2*k
+            greatest = 0
+            low = 0
+            high = len(nums) - 1
 
-            if len(group) and cs <= fe:
-                group.append(ranNums[i])
-                ans = max(ans, len(group))
-            else:
-                if len(group) > 0:
-                    group.pop(0)
-                group.append(ranNums[i])
+            while low <= high:
+                mid = int(low + (high - low)/2)
+                if nums[mid] <= y:
+                    greatest = max(mid - i + 1, greatest)
+                    low = mid + 1
+                else:
+                    high = mid - 1
 
-            i += 1
+            ans.append(greatest) 
+
+        return max(ans)
+            
         
-        return ans
-
-        
-            
-
-
-
         
