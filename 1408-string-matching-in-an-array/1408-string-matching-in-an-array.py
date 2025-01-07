@@ -21,8 +21,9 @@ class Solution:
                         
                         l += 1
                         if(k != 0):
+                            l -= k 
                             k = 0
-                            l -= k + 1
+                            
                         print("l", l)
 
                 if k == len(word1):
