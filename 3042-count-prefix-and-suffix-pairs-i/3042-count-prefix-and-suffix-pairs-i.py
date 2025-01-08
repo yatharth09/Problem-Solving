@@ -9,13 +9,15 @@ class Solution:
                 k = 0
                 l = 0
                 while k < len(supre) and l < len(comp):
-                    if supre[k] == comp[l] and supre[-k] == comp[-l]:
+                    print(supre[-k], comp[-l])
+                    if supre[k] == comp[l] and supre[-(k+1)] == comp[-(l+1)]:
                         k += 1
                         l += 1
                     else:
                         break 
 
                 if k == len(supre):
+                    print(supre, comp, k, l)
                     count += 1
                     
 
